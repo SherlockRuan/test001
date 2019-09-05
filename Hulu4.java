@@ -14,20 +14,28 @@ public class Hulu4 {
         int now = 0;
         int ans = 0;
         HashSet<Integer> set = new HashSet<>();
+        boolean justStop = false;
         for (int i = 0; i < n; i++) {
-            if (n-i == k) {
+            if (n-i == k && justStop) {
+                ans += k;
+                break;
+            }
+            if (n-i == k-1 && !justStop) {
                 ans += k + now;
                 break;
             }
             if (!set.contains(arr[i])) {
                 set.add(arr[i]);
                 now++;
+                justStop = true;
                 continue;
             }
             ans += now;
             now = 1;
             set.clear();
             set.add(arr[i]);
+            k--;
+            justStop = false;
         }
 
         System.out.println(ans);
