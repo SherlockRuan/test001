@@ -32,8 +32,10 @@ public class Hulu1 {
             for (int j = 0; j < n; j++) {
                 can[j] = true;
             }
-            ans += helper(i, n, good, bad, arr, can, m);
+            ans += helper(i, n, good, bad, arr, can, m) * isHere;
         }
+
+        System.out.println(String.format("%.5f", ans));
     }
 
     private static double helper(int start, int n, int good, int bad, int[] a, boolean[] can, int m) {
@@ -51,8 +53,8 @@ public class Hulu1 {
                 else bad_--;
             }
             now++;
+            if (now == a.length) now = 0;
         }
-        return helper(now, n-1, good_, bad_, a, can, m);
+        return helper(now, n-1, good_, bad_, a, can, M);
     }
 }
-
